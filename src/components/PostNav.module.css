@@ -2,36 +2,38 @@
   height: 48px;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
   border-bottom: 0.5px solid var(--rule);
   background: var(--paper);
-  gap: 0.5rem;
   flex-shrink: 0;
+  gap: 0.25rem;
 }
 
-/* 左：HOME */
-.home {
+/* 左：翻篇按钮 */
+.left {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  text-decoration: none;
-  color: var(--ink);
+  gap: 0.25rem;
   flex-shrink: 0;
 }
 
-.homeLogo {
-  font-family: var(--font-playfair);
-  font-style: italic;
-  font-size: 18px;
-  line-height: 1;
-  color: var(--ink);
-}
-
-.homeLabel {
+.flipBtn {
   font-family: var(--font-mono);
   font-size: 9px;
-  letter-spacing: 0.18em;
-  color: var(--ink2);
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  border: 0.5px solid var(--rule);
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.flipBtn:hover {
+  border-color: var(--ink);
+  color: var(--rust);
 }
 
 /* 中：期号日期 */
@@ -40,55 +42,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  overflow: hidden;
 }
 
-.no {
+.issue {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--ink);
-}
-
-.dot {
-  color: var(--ink3);
-  font-size: 10px;
-}
-
-.date {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 9px;
+  letter-spacing: 0.12em;
   color: var(--ink2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* 右：按钮组 */
+/* 右：ALL + SEARCH 入口 */
 .right {
   display: flex;
   align-items: center;
-  gap: 0.1rem;
+  gap: 0.25rem;
   flex-shrink: 0;
 }
 
-.btn {
+.entryBtn {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--ink2);
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  border: 0.5px solid transparent;
+  min-height: 36px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  font-size: 14px;
-  color: var(--ink);
-  text-decoration: none;
-  border: 0.5px solid transparent;
-  transition: border-color 0.15s, color 0.15s;
-  /* 手机端最小点击区域 */
-  min-width: 44px;
-  min-height: 44px;
+  white-space: nowrap;
 }
 
-.btn:hover {
+.entryBtn:hover {
   border-color: var(--rule);
-  color: var(--rust);
+  color: var(--ink);
 }
 
 .disabled {

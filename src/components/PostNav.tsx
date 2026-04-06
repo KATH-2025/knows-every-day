@@ -11,38 +11,36 @@ interface Props {
 export default function PostNav({ issueNum, date, prev, next }: Props) {
   return (
     <nav className={styles.nav}>
-      {/* 左：回首页 */}
-      <Link href="/archive" className={styles.home} title="所有文章">
-        <span className={styles.homeLogo}>K</span>
-        <span className={styles.homeLabel}>HOME</span>
-      </Link>
 
-      {/* 中：期号 + 日期 */}
-      <div className={styles.center}>
-        <span className={styles.no}>NO.{issueNum}</span>
-        <span className={styles.dot}>·</span>
-        <span className={styles.date}>{date}</span>
-      </div>
-
-      {/* 右：前后翻篇 */}
-      <div className={styles.right}>
+      {/* 左：翻篇（明确标注是"篇"，和内容内导航区分） */}
+      <div className={styles.left}>
         <Link
           href={prev ? `/${prev}` : "#"}
-          className={`${styles.btn} ${!prev ? styles.disabled : ""}`}
+          className={`${styles.flipBtn} ${!prev ? styles.disabled : ""}`}
           aria-disabled={!prev}
-          title="上一篇"
         >
-          ←
+          ← PREV
         </Link>
         <Link
           href={next ? `/${next}` : "#"}
-          className={`${styles.btn} ${!next ? styles.disabled : ""}`}
+          className={`${styles.flipBtn} ${!next ? styles.disabled : ""}`}
           aria-disabled={!next}
-          title="下一篇"
         >
-          →
+          NEXT →
         </Link>
       </div>
+
+      {/* 中：期号 + 日期 */}
+      <div className={styles.center}>
+        <span className={styles.issue}>NO.{issueNum} · {date}</span>
+      </div>
+
+      {/* 右：ALL ISSUES + SEARCH 入口 */}
+      <div className={styles.right}>
+        <Link href="/archive" className={styles.entryBtn}>ALL</Link>
+        <Link href="/search" className={styles.entryBtn}>SEARCH</Link>
+      </div>
+
     </nav>
   );
 }
