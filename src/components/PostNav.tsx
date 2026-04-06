@@ -12,7 +12,7 @@ export default function PostNav({ issueNum, date, prev, next }: Props) {
   return (
     <nav className={styles.nav}>
       {/* 左：回首页 */}
-      <Link href="/" className={styles.home} title="回首页">
+      <Link href="/archive" className={styles.home} title="所有文章">
         <span className={styles.homeLogo}>K</span>
         <span className={styles.homeLabel}>HOME</span>
       </Link>
