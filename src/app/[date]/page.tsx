@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import IssueBar from "@/components/IssueBar";
 import PostCover from "@/components/PostCover";
 import HtmlPostFrame from "@/components/HtmlPostFrame";
+import PostNav from "@/components/PostNav";
 import SiteFooter from "@/components/SiteFooter";
 import styles from "./page.module.css";
 
@@ -41,15 +42,12 @@ export default async function DatePage({ params }: Props) {
   if (post.isFullPage) {
     return (
       <div style={{ display: "flex", flexDirection: "column", height: "100dvh", overflow: "hidden", background: "var(--paper)" }}>
-        <div style={{ flexShrink: 0, maxWidth: "var(--max-width)", width: "100%", margin: "0 auto", padding: "0 2rem" }}>
-          <Masthead />
-          <IssueBar
-            left={`NO.${String(currentIndex).padStart(3, "0")}`}
-            date={dateLabel}
-            prev={prev}
-            next={next}
-          />
-        </div>
+        <PostNav
+          issueNum={String(currentIndex).padStart(3, "0")}
+          date={dateLabel}
+          prev={prev}
+          next={next}
+        />
         <div style={{ flex: 1, minHeight: 0 }}>
           <HtmlPostFrame slug={post.slug} />
         </div>
