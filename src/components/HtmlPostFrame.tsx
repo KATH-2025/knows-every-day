@@ -5,6 +5,7 @@ interface Props {
 }
 
 // 通过 API 路由加载 HTML（比 srcdoc 在移动端更可靠）
+// 父容器控制高度，iframe 填满 100%
 export default function HtmlPostFrame({ slug }: Props) {
   return (
     <iframe
@@ -12,8 +13,7 @@ export default function HtmlPostFrame({ slug }: Props) {
       title="post content"
       style={{
         width: "100%",
-        height: "calc(100dvh - 160px)",
-        minHeight: "480px",
+        height: "100%",
         border: "none",
         display: "block",
       }}

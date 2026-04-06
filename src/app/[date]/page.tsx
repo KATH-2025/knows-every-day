@@ -37,6 +37,26 @@ export default async function DatePage({ params }: Props) {
   const currentIndex = allMetas.length - allMetas.findIndex((m) => m.slug === post.slug);
   const dateLabel = post.date.replace(/-/g, ".");
 
+  // 全页 HTML：固定视口高度，禁止外层滚动，iframe 填满剩余空间
+  if (post.isFullPage) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", height: "100dvh", overflow: "hidden", background: "var(--paper)" }}>
+        <div style={{ flexShrink: 0, maxWidth: "var(--max-width)", width: "100%", margin: "0 auto", padding: "0 2rem" }}>
+          <Masthead />
+          <IssueBar
+            left={`NO.${String(currentIndex).padStart(3, "0")}`}
+            date={dateLabel}
+            prev={prev}
+            next={next}
+          />
+        </div>
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <HtmlPostFrame slug={post.slug} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
@@ -52,12 +72,7 @@ export default async function DatePage({ params }: Props) {
           <div className={styles.kicker}>{post.topic}</div>
           <h1 className={styles.h1}>{post.title}</h1>
           <PostCover src={post.image} alt={post.title} />
-          {post.isFullPage ? (
-            <HtmlPostFrame slug={post.slug} />
-          ) : (
-            <div className="prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
-          )}
-
+          <div className="prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
           {post.tags.length > 0 && (
             <div className={styles.tags}>
               {post.tags.map((tag) => (
