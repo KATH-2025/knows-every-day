@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-text-primary);
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navItem {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  transition: color 0.15s;
+}
+
+.navItem:hover,
+.active {
+  color: var(--color-text-primary);
+}

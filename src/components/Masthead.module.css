@@ -1,0 +1,68 @@
+.masthead {
+  margin-bottom: 0;
+}
+
+/* 上方工具导航 */
+.preNav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navLink {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--ink3);
+}
+
+.navLink:hover {
+  color: var(--ink);
+}
+
+/* 上方 2px 实线 */
+.rule2px {
+  height: 2px;
+  background: var(--ink);
+}
+
+/* 站名区域 */
+.inner {
+  padding: 0.65rem 0;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.45em;
+  color: var(--ink);
+  text-transform: uppercase;
+  display: block;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink3);
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+/* 下方 0.5px 细线 */
+.ruleHalf {
+  border-top: 0.5px solid var(--rule);
+}
+
+/* ── 移动端 ── */
+@media (max-width: 480px) {
+  .preNav {
+    gap: 1rem;
+  }
+
+  .title {
+    letter-spacing: 0.25em;
+  }
+}

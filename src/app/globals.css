@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap');
+
+:root {
+  --paper: #F5F0E8;
+  --ink: #1A1714;
+  --ink2: #6B6560;
+  --ink3: #A8A39D;
+  --rust: #B85C38;
+  --rule: #D8D2C8;
+
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', sans-serif;
+
+  --max-width: 620px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── 文章正文排版 ── */
+.prose {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2.1;
+  color: var(--ink2);
+}
+
+.prose h2,
+.prose h3 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--ink);
+  margin: 2em 0 0.6em;
+}
+
+.prose h2 {
+  font-size: 15px;
+}
+
+.prose h3 {
+  font-size: 14px;
+}
+
+.prose p {
+  margin-bottom: 1.1em;
+}
+
+.prose strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+/* Pull quote */
+.prose blockquote {
+  border-left: 1.5px solid var(--rust);
+  padding-left: 1.25rem;
+  margin: 1.75em 0;
+  font-family: var(--font-playfair);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink2);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.1em;
+}
+
+.prose li {
+  margin-bottom: 0.3em;
+}
+
+.prose code {
+  background: transparent;
+  border: 0.5px solid var(--rule);
+  padding: 1px 5px;
+  font-size: 0.875em;
+  font-family: var(--font-mono);
+  color: var(--ink2);
+}
+
+.prose pre {
+  background: transparent;
+  border: 0.5px solid var(--rule);
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.1em;
+}
+
+.prose pre code {
+  border: none;
+  padding: 0;
+}
+
+.prose img {
+  margin: 0.75em 0;
+}
+
+.prose hr {
+  border: none;
+  border-top: 0.5px solid var(--rule);
+  margin: 2em 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 1.1em;
+}
+
+.prose th,
+.prose td {
+  border: 0.5px solid var(--rule);
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+}
+
+.prose th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink3);
+  font-weight: 400;
+}

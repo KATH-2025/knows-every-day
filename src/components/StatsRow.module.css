@@ -1,0 +1,29 @@
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.chip {
+  flex: 1;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 0.85rem 1rem;
+  text-align: center;
+  border: 0.5px solid var(--color-border-tertiary);
+}
+
+.num {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Noto Serif SC', serif;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.label {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}

@@ -1,0 +1,109 @@
+.wrap {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+/* 无边框，只有下方一条线 */
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 0.5px solid var(--ink2);
+  padding-bottom: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--ink3);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--ink3);
+}
+
+.clear {
+  font-size: 14px;
+  color: var(--ink3);
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+
+.clear:hover {
+  color: var(--ink);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border: 0.5px solid var(--rule);
+  z-index: 100;
+}
+
+.result {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 0.5px solid var(--rule);
+  cursor: pointer;
+}
+
+.result:last-child {
+  border-bottom: none;
+}
+
+.result:hover .rTitle {
+  color: var(--rust);
+}
+
+.rDate {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink3);
+  min-width: 44px;
+  flex-shrink: 0;
+}
+
+.rTitle {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rTopic {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink3);
+  flex-shrink: 0;
+}
+
+.empty {
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink3);
+  text-align: center;
+}

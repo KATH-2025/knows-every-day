@@ -1,0 +1,1677 @@
+<!--
+{
+  "title": "一块破碗为什么比新碗更值钱：侘寂美学与金继完全入门",
+  "date": "2026-04-05",
+  "topic": "艺术与美学",
+  "tags": ["侘寂", "金继", "日本美学", "茶道", "器物文化", "哲学"]
+}
+-->
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 1 · 侘寂与金继：完全入门</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1410;
+      --ink-soft: #3a3028;
+      --ink-muted: #7a6e67;
+      --ink-faint: #b0a49a;
+      --paper: #f6f2ec;
+      --paper-warm: #ece5da;
+      --paper-card: #faf7f3;
+      --gold: #b8923a;
+      --gold-light: #d4aa5a;
+      --gold-pale: #f5ecd8;
+      --gold-border: #e0c882;
+      --accent: #7a3f2a;
+      --teal: #2a6b6b;
+      --serif: 'Noto Serif SC', Georgia, serif;
+      --sans: 'Noto Sans SC', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    /* PROGRESS */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--gold);
+      z-index: 200;
+      width: 0;
+      transition: width .1s linear;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(26, 20, 16, .93);
+      backdrop-filter: blur(10px);
+      padding: .8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateY(-100%);
+      transition: transform .3s;
+    }
+
+    .nav.show {
+      transform: translateY(0);
+    }
+
+    .nav-tag {
+      font-size: 10px;
+      letter-spacing: .3em;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .nav-t {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: #f0ebe3;
+    }
+
+    .nav-min {
+      font-size: 11px;
+      color: #6b5f56;
+      letter-spacing: .1em;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: #120e0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a1e12 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-day {
+      font-size: 10px;
+      letter-spacing: .4em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .hero-bowl {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 2.5rem;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-weight: 300;
+      color: #f0ebe3;
+      text-align: center;
+      line-height: 1.35;
+      max-width: 640px;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: #6b5f56;
+      letter-spacing: .15em;
+      position: relative;
+    }
+
+    .scroll-ind {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadein 1s 3s both;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0)
+      }
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: pulse-line 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-line {
+
+      0%,
+      100% {
+        opacity: .3
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    .scroll-txt {
+      font-size: 9px;
+      letter-spacing: .25em;
+      color: #6b5f56;
+    }
+
+    /* CONTENTS SIDEBAR */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    .toc {
+      padding: 3rem 1.5rem 3rem 2rem;
+      position: sticky;
+      top: 60px;
+      height: fit-content;
+    }
+
+    .toc-title {
+      font-size: 9px;
+      letter-spacing: .3em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list li {
+      margin-bottom: .5rem;
+    }
+
+    .toc-list a {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color .2s;
+      line-height: 1.5;
+      display: block;
+      padding: 2px 0;
+      border-left: 1.5px solid transparent;
+      padding-left: 10px;
+    }
+
+    .toc-list a:hover,
+    .toc-list a.active {
+      color: var(--gold);
+      border-left-color: var(--gold);
+    }
+
+    .toc-list .toc-sub {
+      padding-left: 18px;
+      font-size: 11px;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 3rem 3rem 3rem 2rem;
+      max-width: 760px;
+    }
+
+    /* SECTIONS */
+    .sec {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--paper-warm);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s, transform .6s;
+    }
+
+    .sec.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    .sec:last-child {
+      border-bottom: none;
+    }
+
+    .sec-label {
+      font-size: 9px;
+      letter-spacing: .35em;
+      color: var(--gold);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--paper-warm);
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 2rem 0 .7rem;
+      color: var(--ink-soft);
+    }
+
+    p {
+      margin-bottom: 1.3rem;
+      color: var(--ink-soft);
+      font-size: .97rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    em {
+      font-style: italic;
+      font-family: var(--serif);
+    }
+
+    /* KNOWLEDGE MAP — opening graphic */
+    .knowledge-map {
+      background: var(--ink);
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .km-title {
+      font-size: 10px;
+      letter-spacing: .3em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .km-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .km-node {
+      background: #2a211a;
+      border-radius: 6px;
+      padding: 1rem;
+      border: 1px solid #3d2e22;
+    }
+
+    .km-node.center {
+      background: #3a2512;
+      border-color: var(--gold);
+      grid-column: 2;
+    }
+
+    .km-node-label {
+      font-size: 9px;
+      letter-spacing: .2em;
+      color: var(--gold-light);
+      font-weight: 500;
+      margin-bottom: .4rem;
+    }
+
+    .km-node-title {
+      font-family: var(--serif);
+      font-size: .9rem;
+      color: #f0ebe3;
+      line-height: 1.4;
+    }
+
+    .km-node-sub {
+      font-size: 11px;
+      color: #7a6e67;
+      margin-top: .3rem;
+      line-height: 1.4;
+    }
+
+    /* PULLQUOTE */
+    .pq {
+      margin: 2.5rem 0;
+      padding: 1.5rem 2rem;
+      border-left: 2px solid var(--gold);
+      background: var(--gold-pale);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .pq p {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .pq cite {
+      display: block;
+      margin-top: .7rem;
+      font-size: 11px;
+      font-style: normal;
+      letter-spacing: .1em;
+      color: var(--ink-muted);
+    }
+
+    /* CONCEPT CARDS */
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 2rem 0;
+    }
+
+    .ccard {
+      background: var(--paper-card);
+      border: 1px solid var(--paper-warm);
+      border-radius: 8px;
+      padding: 1.2rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    .ccard-jp {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+
+    .ccard-ro {
+      font-size: 10px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: .7rem;
+    }
+
+    .ccard-original {
+      font-size: 11px;
+      color: var(--ink-faint);
+      margin-bottom: .5rem;
+      line-height: 1.5;
+    }
+
+    .ccard-now {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin: 2rem 0;
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--paper-warm);
+    }
+
+    .tl-item {
+      position: relative;
+      padding: 0 0 2rem 1.5rem;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -1.8rem;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--paper);
+    }
+
+    .tl-year {
+      font-size: 10px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: .3rem;
+    }
+
+    .tl-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: .4rem;
+    }
+
+    .tl-text {
+      font-size: .88rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .tl-text em {
+      font-style: normal;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    /* COMPARE */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--paper-warm);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .cmp-side {
+      background: var(--paper-card);
+      padding: 1.5rem;
+    }
+
+    .cmp-side.gold {
+      background: var(--gold-pale);
+    }
+
+    .cmp-label {
+      font-size: 9px;
+      letter-spacing: .25em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+    }
+
+    .cmp-side.gold .cmp-label {
+      color: var(--accent);
+    }
+
+    .cmp-list {
+      list-style: none;
+    }
+
+    .cmp-list li {
+      font-size: .85rem;
+      color: var(--ink-muted);
+      padding: .4rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .cmp-list li:last-child {
+      border: none;
+    }
+
+    .cmp-list li::before {
+      content: '·';
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* KINTSUGI PROCESS */
+    .process {
+      margin: 2rem 0;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--paper-warm);
+      align-items: flex-start;
+    }
+
+    .process-step:last-child {
+      border: none;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-body {
+      flex: 1;
+    }
+
+    .step-title {
+      font-weight: 500;
+      font-size: .95rem;
+      color: var(--ink);
+      margin-bottom: .3rem;
+    }
+
+    .step-text {
+      font-size: .85rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .step-detail {
+      margin-top: .4rem;
+      font-size: .8rem;
+      background: var(--paper-warm);
+      padding: .5rem .8rem;
+      border-radius: 4px;
+      color: var(--ink-muted);
+    }
+
+    /* INSIGHT BOX */
+    .insight {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--ink);
+      border-radius: 6px;
+    }
+
+    .insight-tag {
+      font-size: 9px;
+      letter-spacing: .3em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: .7rem;
+    }
+
+    .insight p {
+      color: #d0c4b8;
+      font-size: .92rem;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    .insight strong {
+      color: #f0ebe3;
+    }
+
+    /* MASTER LIST */
+    .master-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 2rem 0;
+    }
+
+    .master-card {
+      background: var(--paper-card);
+      border: 1px solid var(--paper-warm);
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+
+    .master-era {
+      font-size: 9px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: .4rem;
+    }
+
+    .master-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: .2rem;
+    }
+
+    .master-jp {
+      font-size: 11px;
+      color: var(--ink-faint);
+      margin-bottom: .5rem;
+    }
+
+    .master-desc {
+      font-size: .82rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    /* VOCABULARY TABLE */
+    .vocab {
+      margin: 2rem 0;
+      border: 1px solid var(--paper-warm);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .vocab-row {
+      display: grid;
+      grid-template-columns: 90px 110px 1fr;
+      border-bottom: 1px solid var(--paper-warm);
+    }
+
+    .vocab-row:last-child {
+      border: none;
+    }
+
+    .vocab-row.header {
+      background: var(--ink);
+    }
+
+    .vocab-cell {
+      padding: .8rem 1rem;
+      font-size: .85rem;
+      color: var(--ink-muted);
+    }
+
+    .vocab-row.header .vocab-cell {
+      font-size: 9px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .vocab-jp {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .vocab-ro {
+      font-size: 11px;
+      letter-spacing: .1em;
+      color: var(--gold-light);
+    }
+
+    /* REAL VS FAKE */
+    .judge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 2rem 0;
+    }
+
+    .judge-card {
+      border-radius: 8px;
+      padding: 1.3rem;
+    }
+
+    .judge-card.real {
+      background: #f0f5ee;
+      border: 1px solid #c5d9c0;
+    }
+
+    .judge-card.fake {
+      background: #f5f0ee;
+      border: 1px solid #d9c5c0;
+    }
+
+    .judge-label {
+      font-size: 9px;
+      letter-spacing: .25em;
+      font-weight: 500;
+      margin-bottom: .8rem;
+    }
+
+    .judge-card.real .judge-label {
+      color: #3d6b38;
+    }
+
+    .judge-card.fake .judge-label {
+      color: #8b4030;
+    }
+
+    .judge-list {
+      list-style: none;
+    }
+
+    .judge-list li {
+      font-size: .82rem;
+      color: var(--ink-muted);
+      padding: .3rem 0;
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+    }
+
+    .judge-list li:last-child {
+      border: none;
+    }
+
+    .judge-card.real .judge-list li::before {
+      content: '✓';
+      color: #3d6b38;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .judge-card.fake .judge-list li::before {
+      content: '✗';
+      color: #8b4030;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    /* DEBATE */
+    .debate-item {
+      margin: 1.5rem 0;
+      padding: 1.2rem;
+      background: var(--paper-card);
+      border-radius: 8px;
+      border-left: 3px solid var(--paper-warm);
+    }
+
+    .debate-item.pro {
+      border-left-color: var(--teal);
+    }
+
+    .debate-item.con {
+      border-left-color: var(--accent);
+    }
+
+    .debate-label {
+      font-size: 9px;
+      letter-spacing: .2em;
+      font-weight: 500;
+      margin-bottom: .5rem;
+    }
+
+    .debate-item.pro .debate-label {
+      color: var(--teal);
+    }
+
+    .debate-item.con .debate-label {
+      color: var(--accent);
+    }
+
+    .debate-text {
+      font-size: .88rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* CHEATSHEET */
+    .cheatsheet {
+      background: var(--ink);
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .cs-title {
+      font-size: 10px;
+      letter-spacing: .3em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .cs-block-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold-light);
+      margin-bottom: .6rem;
+      letter-spacing: .1em;
+    }
+
+    .cs-list {
+      list-style: none;
+    }
+
+    .cs-list li {
+      font-size: .8rem;
+      color: #9a8e85;
+      line-height: 1.7;
+      padding: .2rem 0;
+      display: flex;
+      gap: 6px;
+    }
+
+    .cs-list li::before {
+      content: '—';
+      color: #4a3828;
+      flex-shrink: 0;
+    }
+
+    /* CLOSING */
+    .closing {
+      background: var(--ink);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .closing-label {
+      font-size: 9px;
+      letter-spacing: .4em;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .closing h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+      font-weight: 300;
+      color: #f0ebe3;
+      max-width: 580px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
+    }
+
+    .closing p {
+      font-size: .9rem;
+      color: #6b5f56;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+
+    .gold-bar {
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.8rem auto;
+    }
+
+    .footer {
+      font-size: 11px;
+      color: var(--ink-faint);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      background: var(--paper);
+    }
+
+    /* CRACK ANIMATION */
+    .crack-path {
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      animation: draw 2.5s ease-out 1s forwards;
+    }
+
+    .gold-path {
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      animation: draw 2.5s ease-out 2.5s forwards;
+      opacity: .9;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .glow-dot {
+      opacity: 0;
+      animation: dot-appear .4s ease forwards;
+    }
+
+    @keyframes dot-appear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media(max-width:900px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        display: none;
+      }
+
+      .content {
+        padding: 2rem 1.5rem;
+      }
+
+      .cards-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .master-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .judge-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .km-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .km-node.center {
+        grid-column: 1;
+      }
+    }
+
+    @media(max-width:600px) {
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .compare {
+        grid-template-columns: 1fr;
+      }
+
+      .vocab-row {
+        grid-template-columns: 80px 90px 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="progress"></div>
+
+  <nav class="nav" id="nav">
+    <span class="nav-tag">Day 01 · 艺术与美学</span>
+    <span class="nav-t">侘寂与金继完全入门</span>
+    <span class="nav-min">约 20 分钟</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-orb"></div>
+    <p class="hero-day">DAY 01 · 艺术与美学</p>
+
+    <div class="hero-bowl">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+        <ellipse cx="100" cy="125" rx="70" ry="18" fill="#221710" />
+        <path d="M30 125 Q26 92 40 66 Q58 38 100 35 Q142 38 160 66 Q174 92 170 125" fill="#1a110a" />
+        <ellipse cx="100" cy="48" rx="62" ry="14" fill="#261a10" stroke="#3d2a1a" stroke-width="1" />
+        <ellipse cx="100" cy="51" rx="48" ry="9" fill="#0e0905" opacity=".7" />
+        <path class="crack-path" d="M88 40 Q93 62 89 80 Q85 102 95 122" stroke="#5a3e10" stroke-width="1.2"
+          stroke-linecap="round" />
+        <path class="crack-path" d="M91 75 Q105 80 118 76 Q128 72 140 78" stroke="#5a3e10" stroke-width=".9"
+          stroke-linecap="round" style="animation-delay:1.8s" />
+        <path class="gold-path" d="M88 40 Q93 62 89 80 Q85 102 95 122" stroke="#c9a43e" stroke-width="2"
+          stroke-linecap="round" />
+        <path class="gold-path" d="M91 75 Q105 80 118 76 Q128 72 140 78" stroke="#c9a43e" stroke-width="1.5"
+          stroke-linecap="round" style="animation-delay:3.2s" />
+        <circle class="glow-dot" cx="90" cy="60" r="2.5" fill="#e8c060" style="animation-delay:4s" />
+        <circle class="glow-dot" cx="91" cy="85" r="2" fill="#e8c060" style="animation-delay:4.2s" />
+        <circle class="glow-dot" cx="108" cy="76" r="2" fill="#e8c060" style="animation-delay:4.4s" />
+        <circle class="glow-dot" cx="126" cy="75" r="1.5" fill="#e8c060" style="animation-delay:4.6s" />
+      </svg>
+    </div>
+
+    <h1 class="hero-title">一块破碗<br>为什么比新碗更值钱</h1>
+    <p class="hero-sub">侘寂美学与金继技法 · 完全入门</p>
+
+    <div class="scroll-ind">
+      <div class="scroll-line"></div>
+      <span class="scroll-txt">开始阅读</span>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE MAP -->
+  <div style="background:var(--ink);padding:3rem 2rem 2rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <div class="knowledge-map" style="background:transparent;padding:0;">
+        <p class="km-title">读完本文你将建立的知识地图</p>
+        <div class="km-grid">
+          <div class="km-node">
+            <div class="km-node-label">哲学根源</div>
+            <div class="km-node-title">佛教无常观</div>
+            <div class="km-node-sub">为什么日本人不怕缺陷</div>
+          </div>
+          <div class="km-node center">
+            <div class="km-node-label">核心概念</div>
+            <div class="km-node-title">侘寂 Wabi-sabi</div>
+            <div class="km-node-sub">不完美·无常·未完成</div>
+          </div>
+          <div class="km-node">
+            <div class="km-node-label">历史脉络</div>
+            <div class="km-node-title">茶道革命</div>
+            <div class="km-node-sub">从奢靡到极简的叛逆</div>
+          </div>
+          <div class="km-node">
+            <div class="km-node-label">应用技艺</div>
+            <div class="km-node-title">金继 Kintsugi</div>
+            <div class="km-node-sub">用黄金让破碎可见</div>
+          </div>
+          <div class="km-node center" style="grid-column:2;">
+            <div class="km-node-label">美学判断</div>
+            <div class="km-node-title">如何辨别真假侘寂</div>
+            <div class="km-node-sub">行家的眼光</div>
+          </div>
+          <div class="km-node">
+            <div class="km-node-label">当代争议</div>
+            <div class="km-node-title">过度消费与误读</div>
+            <div class="km-node-sub">侘寂被滥用了吗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="page-layout">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <p class="toc-title">本文目录</p>
+      <ul class="toc-list">
+        <li><a href="#s1">一、起点：那只碎碗</a></li>
+        <li><a href="#s2">二、哲学地基</a></li>
+        <li><a href="#s3" class="toc-sub">三个核心词</a></li>
+        <li><a href="#s4">四、茶道：历史脉络</a></li>
+        <li><a href="#s5" class="toc-sub">五位关键人物</a></li>
+        <li><a href="#s6">六、金继工艺全解</a></li>
+        <li><a href="#s7">七、美学标准</a></li>
+        <li><a href="#s8">八、辨别真假侘寂</a></li>
+        <li><a href="#s9">九、内部争议</a></li>
+        <li><a href="#s10">十、对话备用词汇</a></li>
+        <li><a href="#s11">十一、速查手册</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+
+      <!-- S1 故事开场 -->
+      <section class="sec" id="s1" data-obs>
+        <p class="sec-label">起点</p>
+        <h2>一只碗的两种修法，决定了两种世界观</h2>
+
+        <p>大约16世纪，日本将军足利义政最心爱的中国青瓷茶碗摔碎了。他把碎片送去中国修复。几个月后碗回来了——工匠用金属钉把碎片钉在一起，功能恢复了，裂缝被隐藏了，看起来基本完整。</p>
+
+        <p>义政盯着那排生硬的金属钉沉默了很久。他把碗交给日本工匠，说：<strong>你们能做得更好吗？</strong></p>
+
+        <p>日本工匠没有试图隐藏裂缝。他们把断口打磨平整，填入天然漆料，然后在漆未干时撒上真金粉。碗回来时，金色的裂缝在黑色釉面上发光，如同闪电。义政说了一句话，大意是：</p>
+
+        <div class="pq">
+          <p>「这碗现在更美了。」</p>
+          <cite>——据传为足利义政评价，约16世纪，金继（Kintsugi）诞生的历史时刻</cite>
+        </div>
+
+        <p>这句话放在中国或西方，听起来是安慰。放在当时的日本，是一个严肃的美学判断——背后有一整套哲学体系在支撑它。</p>
+
+        <p>要理解它，我们需要先建一个哲学地基。</p>
+      </section>
+
+      <!-- S2 哲学根源 -->
+      <section class="sec" id="s2" data-obs>
+        <p class="sec-label">哲学地基</p>
+        <h2>为什么日本文化不逃避破碎</h2>
+
+        <p>侘寂不是日本人独有的发明，它的哲学根基来自两个更古老的传统：<strong>佛教的无常观</strong>与<strong>道家的自然哲学</strong>，经过日本本土化后形成了一个独特的美学系统。</p>
+
+        <h3>佛教三法印与美学的关系</h3>
+        <p>佛教的核心观念之一：<em>诸行无常</em>——一切事物都在变化，执着于永恒是苦的根源。这本来是一个解脱论，但日本文化把它转化成了一种审美态度：</p>
+
+        <div class="insight">
+          <p class="insight-tag">关键转化</p>
+          <p>如果一切都会消逝，那么<strong>消逝本身就是美的组成部分，而不是美的对立面</strong>。一朵樱花因为会凋谢才值得看，一只有裂缝的碗因为记录了时间才有价值。这不是宽慰，是世界观。</p>
+        </div>
+
+        <h3>与西方美学的根本分歧</h3>
+        <p>西方古典美学从柏拉图开始，把"完美的理型"视为最高真实，现实中不完美的事物只是对理型的拙劣模仿。这套逻辑延伸到修复领域：最好的修复，是让被修复的物件看起来从未受损——回到"原本的完美状态"。</p>
+
+        <p>侘寂的逻辑完全相反：<strong>没有经历的完美是空洞的，有历史的不完美才是真实的。</strong>一只从未被使用的完美茶碗，和一只被人用了二十年、有使用痕迹的茶碗，后者在侘寂美学里价值更高。</p>
+      </section>
+
+      <!-- S3 三个词 -->
+      <section class="sec" id="s3" data-obs>
+        <p class="sec-label">核心概念</p>
+        <h2>侘寂的三个根词——你必须能区分它们</h2>
+
+        <p>很多人把"侘寂"当一个词，但它其实是两个汉字的合体，各有独立来源。加上紧密相关的第三个概念，构成侘寂美学的核心词汇系统：</p>
+
+        <div class="cards-3">
+          <div class="ccard">
+            <div class="ccard-jp">侘</div>
+            <div class="ccard-ro">WABI</div>
+            <div class="ccard-original">原意：孤独、寂寥、贫困，带有负面含义</div>
+            <div class="ccard-now">转化后：在简陋与缺乏中感受到的内在宁静；拒绝多余装饰的诚实感</div>
+          </div>
+          <div class="ccard">
+            <div class="ccard-jp">寂</div>
+            <div class="ccard-ro">SABI</div>
+            <div class="ccard-original">原意：锈迹、衰老、荒废，时间腐蚀的产物</div>
+            <div class="ccard-now">转化后：岁月在物体上留下的痕迹所产生的美；时间的可见签名</div>
+          </div>
+          <div class="ccard">
+            <div class="ccard-jp">物の哀れ</div>
+            <div class="ccard-ro">MONO NO AWARE</div>
+            <div class="ccard-original">字面意思：万物的哀愁；平安时代文学核心情感</div>
+            <div class="ccard-now">转化后：对美好事物必将消逝的温柔感伤；侘寂的情感底层</div>
+          </div>
+        </div>
+
+        <p>这三个概念的关系：<em>mono no
+            aware</em>是情感底色（知道美会消逝），<em>wabi</em>是对简陋的肯定（不需要外在装饰），<em>sabi</em>是对时间痕迹的欣赏（老旧比崭新更有价值）。合在一起构成侘寂的完整哲学：<strong>在不完美、无常、未完成的事物中感受美。</strong>
+        </p>
+
+        <div class="insight">
+          <p class="insight-tag">最常见的误解</p>
+          <p>
+            不要把侘寂说成"残缺美"或"残破美"——这是最常见的误解。侘寂不是对缺陷的宽容，而是主张<strong>完整本身不是最高价值</strong>。一只故意做成歪斜的茶碗，不是因为工匠技术不够，而是因为那歪斜证明了人手的存在——机器压模的完美茶碗里什么都没有。
+          </p>
+        </div>
+      </section>
+
+      <!-- S4 茶道历史 -->
+      <section class="sec" id="s4" data-obs>
+        <p class="sec-label">历史脉络</p>
+        <h2>侘寂怎么从哲学变成一场美学革命</h2>
+
+        <p>侘寂不是某个哲学家写在书里的概念，它诞生于一场具体的社会对抗：茶道对奢靡文化的叛逆。</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <p class="tl-year">1191年</p>
+            <p class="tl-title">茶从中国传入</p>
+            <p class="tl-text">禅僧<em>荣西</em>将茶种带回，茶在寺院中作为修行辅助——帮助僧侣长时间冥想时保持清醒。最初完全是宗教用途。</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <p class="tl-year">14–15世纪</p>
+            <p class="tl-title">茶成为贵族炫富工具</p>
+            <p class="tl-text">上流社会发展出"斗茶"——比谁的茶具更名贵，中国进口瓷器是身份象征。茶会变成奢靡排场，有时持续数天。</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <p class="tl-year">约1480年代</p>
+            <p class="tl-title">村田珠光：第一次反叛</p>
+            <p class="tl-text">茶师<em>村田珠光（Murata Jukō）</em>开始用日本本地粗陶器代替中国名器，刻意追求简素。他提出"谨·敬·清·寂"，侘茶（wabi-cha）由此诞生。</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <p class="tl-year">16世纪中</p>
+            <p class="tl-title">武野绍鸥：深化理论</p>
+            <p class="tl-text"><em>武野绍鸥（Takeno Jōō）</em>把侘茶与日本古典诗歌美学结合，将"无心之美"引入茶道，使侘寂获得了文学理论的支撑。</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <p class="tl-year">16世纪末</p>
+            <p class="tl-title">千利休：极致化与政治化</p>
+            <p class="tl-text"><em>千利休（Sen no
+                Rikyū）</em>把侘茶推向极端：茶室仅两张榻榻米，入口矮到武士也必须弯腰（象征平等）。他用朝鲜来的粗糙饭碗喝茶，反而成为最高美学。1591年被丰臣秀吉赐死，死因至今争议——美学革命最终与政治权力正面冲突。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- S5 五位关键人物 -->
+      <section class="sec" id="s5" data-obs>
+        <p class="sec-label">关键人物</p>
+        <h2>五位你需要认识的名字</h2>
+        <p>和行家谈侘寂，能说出这五个名字就已经超过大多数人了：</p>
+
+        <div class="master-grid">
+          <div class="master-card">
+            <p class="master-era">12世纪 · 引入者</p>
+            <p class="master-name">荣西</p>
+            <p class="master-jp">Eisai · 1141–1215</p>
+            <p class="master-desc">将茶和禅宗同时带入日本的僧侣。他的贡献是建立了茶与冥想修行的初始关联，为后来的茶道提供了精神土壤。</p>
+          </div>
+          <div class="master-card">
+            <p class="master-era">15世纪 · 开创者</p>
+            <p class="master-name">村田珠光</p>
+            <p class="master-jp">Murata Jukō · 1423–1502</p>
+            <p class="master-desc">侘茶之父。他是第一个说"用破旧的器物喝茶才是最高境界"的人，直接挑战了以中国名器为标准的贵族茶文化。</p>
+          </div>
+          <div class="master-card">
+            <p class="master-era">16世纪 · 理论家</p>
+            <p class="master-name">武野绍鸥</p>
+            <p class="master-jp">Takeno Jōō · 1502–1555</p>
+            <p class="master-desc">把侘茶与文学美学结合。他是村田珠光与千利休之间的桥梁，赋予侘寂更完整的理论框架。</p>
+          </div>
+          <div class="master-card">
+            <p class="master-era">16世纪 · 集大成者</p>
+            <p class="master-name">千利休</p>
+            <p class="master-jp">Sen no Rikyū · 1522–1591</p>
+            <p class="master-desc">侘茶最重要的人物。他定义了茶道四规"和·敬·清·寂"，设计了极简茶室，将侘寂美学推向政治与社会的最前沿，最终被权贵赐死。</p>
+          </div>
+          <div class="master-card" style="grid-column:1/-1;">
+            <p class="master-era">当代 · 理论阐释者</p>
+            <p class="master-name">Leonard Koren</p>
+            <p class="master-jp">Wabi-Sabi for Artists, Designers, Poets & Philosophers · 1994</p>
+            <p class="master-desc">第一个用英文系统阐释侘寂的学者。他1994年出版的小书让侘寂进入西方设计和艺术圈的视野，但也引发了"侘寂被简化成审美风格"的批评。这本书本身就值得一读。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- S6 金继工艺 -->
+      <section class="sec" id="s6" data-obs>
+        <p class="sec-label">技艺解剖</p>
+        <h2>金继：一门刻意让破碎可见的工艺</h2>
+
+        <p>金继（Kintsugi，字面：黄金接合）不是应急修补，而是一套需要数月完成的精密工艺。理解它的每一步，才能理解它为什么是"侘寂哲学的物质化"。</p>
+
+        <div class="process">
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <p class="step-title">清理与分析碎片</p>
+              <p class="step-text">用细砂纸打磨每块碎片的断口，去除污渍和松动的釉料。同时拼合碎片，规划接合顺序——复杂的碎裂可能有数十块，接合顺序错误会导致后续无法合拢。</p>
+              <div class="step-detail">⏱ 时间：数小时至数天 · 最难点：三块以上的碎片需要精确计划顺序</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <p class="step-title">调制漆料（mugi urushi）</p>
+              <p class="step-text">将<em>urushi</em>（天然漆，从漆树树皮割取的树脂）与小麦面粉或瓷粉混合，调成可塑的填充材料。这是核心材料——urushi完全固化后比陶瓷本身更坚硬。</p>
+              <div class="step-detail">⚠ 注意：urushi含漆酚，未固化时会导致皮肤严重过敏。传统工匠需要长时间脱敏训练。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <p class="step-title">填缝与接合</p>
+              <p class="step-text">将漆料填入裂缝，把碎片逐一接合。此步骤需要精确控制用量——过多会溢出需要打磨，过少会有空隙影响强度。</p>
+              <div class="step-detail">urushi 与大多数涂料相反：它在高湿度（80%以上）环境中固化，在干燥环境中无法正常硬化。需要放入"漆风呂"（高湿密封箱）养护。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <p class="step-title">等待固化（最关键的等待）</p>
+              <p class="step-text">接合后放入高湿度环境等待漆料完全固化。温度和湿度的微小变化都会影响固化质量。固化完成后用砂纸打磨接合处至平整。</p>
+              <div class="step-detail">⏱ 时间：每层 2–8 周。复杂修复可能需要 3–5 层，总计 3 个月至 1 年不等。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">05</div>
+            <div class="step-body">
+              <p class="step-title">涂金底漆</p>
+              <p class="step-text">在打磨平整的裂缝上再涂一层纯urushi，作为金粉的底层。这层漆的厚度决定最终金色的饱满程度。</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">06</div>
+            <div class="step-body">
+              <p class="step-title">撒金粉（最终一步，也是命名来源）</p>
+              <p class="step-text">趁底漆未干时，用竹制细管或专用刷均匀撒上真金粉（纯度通常在18K以上）。金粉附着在漆面，形成发光的金色裂纹线条。固化后不再脱落。</p>
+              <div class="step-detail">💡
+                金继的变体：除真金粉（kin-tsugi）外，也有用银粉（gin-tsugi）、铜粉，或仅用金色漆料的简化版本（urushi-tsugi）。行家认为仅用漆料的版本不是严格意义上的金继。</div>
+            </div>
+          </div>
+        </div>
+
+        <p>整个过程的材料成本和时间成本，往往远超那只碗本身的价值。<strong>这本来就不是性价比的事，是一种哲学选择。</strong>用真金，是因为你选择让破碎成为碗的历史中最醒目的部分。</p>
+      </section>
+
+      <!-- S7 美学标准 -->
+      <section class="sec" id="s7" data-obs>
+        <p class="sec-label">美学判断</p>
+        <h2>什么是"好的侘寂"——美学的判断标准</h2>
+
+        <p>侘寂不是所有"老旧破损"的美化。它有自己严格的美学标准，否则任何一块垃圾都可以叫"侘寂风"了。</p>
+
+        <h3>侘寂美学的六个判断维度</h3>
+
+        <div class="compare">
+          <div class="cmp-side">
+            <p class="cmp-label">符合侘寂的特质</p>
+            <ul class="cmp-list">
+              <li>自然材料：陶土、木材、石头、生铁——岁月会在上面留下痕迹</li>
+              <li>不对称：手工制作留下的歪斜，证明人的存在</li>
+              <li>粗粝质感：不打磨到光滑，保留材料的自然肌理</li>
+              <li>使用痕迹可见：茶渍、划痕、磨损——器物的使用历史</li>
+              <li>克制：去除一切非必要的装饰，留下核心功能</li>
+              <li>时间感：能看出器物已经存在了多久</li>
+            </ul>
+          </div>
+          <div class="cmp-side gold">
+            <p class="cmp-label">违背侘寂的特质</p>
+            <ul class="cmp-list">
+              <li>人造材料模仿老旧：用塑料做成"生锈"效果——假时间感</li>
+              <li>刻意制造的对称不对称：用机器压模出"手工感"</li>
+              <li>装饰性的简约：极简只是风格，不是态度</li>
+              <li>新但看起来旧：刻意做旧处理，与真实老化完全不同</li>
+              <li>概念与材料脱节：声称侘寂但用全新高光材料</li>
+              <li>为了美学而非功能：侘寂的器物首先是用的，不是看的</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>千利休的极端测试</h3>
+        <p>千利休有一个著名的故事：他命弟子清扫庭院，弟子扫得干干净净，一片叶子不剩。利休走进去，拉住一棵树轻轻摇了摇，让几片叶子落下。然后说：好了。</p>
+
+        <div class="pq">
+          <p>完美的清洁没有生命感。几片随机落下的叶子，才有时间存在的证据。</p>
+          <cite>——千利休庭院故事所揭示的侘寂判断逻辑</cite>
+        </div>
+      </section>
+
+      <!-- S8 辨别真假 -->
+      <section class="sec" id="s8" data-obs>
+        <p class="sec-label">真与伪</p>
+        <h2>真侘寂与假侘寂——差别在哪里</h2>
+
+        <p>侘寂在过去二十年被大量商业化，酒店、咖啡馆、家居品牌都在用这个词。但其中很多是对侘寂概念的误用或浅用。</p>
+
+        <div class="judge-grid">
+          <div class="judge-card real">
+            <p class="judge-label">真侘寂</p>
+            <ul class="judge-list">
+              <li>器物有真实的使用历史，老旧是自然形成的</li>
+              <li>简素来自对多余之物的主动拒绝，不是风格选择</li>
+              <li>材料是自然的，随时间会继续变化</li>
+              <li>功能优先于外观，美是副产品</li>
+              <li>可以说出器物如何、因何产生了这些特征</li>
+              <li>不完美处是诚实的，不是设计出来的</li>
+            </ul>
+          </div>
+          <div class="judge-card fake">
+            <p class="judge-label">伪侘寂</p>
+            <ul class="judge-list">
+              <li>新品做旧处理，用化学手段模仿时间痕迹</li>
+              <li>极简主义风格，但出发点是审美时尚而非哲学</li>
+              <li>用合成材料营造"天然感"</li>
+              <li>产品的"不完美"是批量生产出来的统一不完美</li>
+              <li>品牌说"侘寂"，但器物里没有任何真实历史</li>
+              <li>展示功能大于使用功能</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="insight">
+          <p class="insight-tag">核心辨别方法</p>
+          <p>如果你看到一件被标榜为"侘寂风"的器物，问自己：<strong>这件东西的"不完美"是时间造成的，还是设计师设计的？</strong>如果是后者，它不是侘寂，它只是极简主义的一个变体。</p>
+        </div>
+      </section>
+
+      <!-- S9 争议 -->
+      <section class="sec" id="s9" data-obs>
+        <p class="sec-label">内部争议</p>
+        <h2>领域内部的三场争论</h2>
+        <p>任何有深度的领域都有内部争议。知道争议在哪，才算真正入门。</p>
+
+        <div class="debate-item con">
+          <p class="debate-label">争议一：侘寂是否已经死于过度消费</p>
+          <p class="debate-text">
+            批评者认为，侘寂一旦成为品牌营销词汇，它的本质就已经消亡——因为侘寂的核心恰恰是拒绝被展示和被消费的态度。一个被印在购物袋上的"侘寂"概念，是对侘寂的自我否定。支持者则认为，概念的传播总会带来误用，但误用不能否定概念本身。
+          </p>
+        </div>
+
+        <div class="debate-item pro">
+          <p class="debate-label">争议二：金继是侘寂的体现，还是对侘寂的违背</p>
+          <p class="debate-text">
+            这是一个有趣的内部悖论：金继用黄金——最耀眼、最昂贵的材料——来标注破碎，这是否与侘寂崇尚低调、拒绝奢华的精神相矛盾？一方认为金继是侘寂的完美体现（让破碎可见而非隐藏）；另一方认为使用黄金反而是在炫耀，更接近与侘寂对立的"华美"（hana）美学。
+          </p>
+        </div>
+
+        <div class="debate-item con">
+          <p class="debate-label">争议三：侘寂能被翻译吗</p>
+          <p class="debate-text">部分日本学者认为，侘寂根植于日本语言、气候（阴雨、四季分明）和禅宗传统，无法被真正翻译成另一种文化语境。Leonard
+            Koren的英文阐释虽然影响力巨大，但在日本学术界也收到批评：他把侘寂系统化了，而侘寂的一部分本质恰恰是抵抗系统化的。</p>
+        </div>
+      </section>
+
+      <!-- S10 词汇表 -->
+      <section class="sec" id="s10" data-obs>
+        <p class="sec-label">词汇表</p>
+        <h2>核心词汇完整对照</h2>
+
+        <div class="vocab">
+          <div class="vocab-row header">
+            <div class="vocab-cell">日文</div>
+            <div class="vocab-cell">罗马音</div>
+            <div class="vocab-cell">含义与使用场景</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">侘寂</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Wabi-sabi</span></div>
+            <div class="vocab-cell">核心概念。在不完美、无常、未完成中感受的美。使用时注意：不是"残缺美"</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">金継ぎ</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Kintsugi</span></div>
+            <div class="vocab-cell">金粉修复破损陶器的工艺。字面：黄金接合</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">物の哀れ</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Mono no aware</span></div>
+            <div class="vocab-cell">对万物必将消逝的温柔感伤。侘寂的情感基础，比侘寂更古老（平安时代文学）</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">一期一会</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Ichigo ichie</span></div>
+            <div class="vocab-cell">每次相遇都是唯一的，不会重来。茶道核心礼仪，也是侘寂时间观的实践</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">漆</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Urushi</span></div>
+            <div class="vocab-cell">天然漆。金继的核心材料，来自漆树树脂，固化后比陶瓷更坚硬</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">侘茶</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Wabi-cha</span></div>
+            <div class="vocab-cell">村田珠光发起的茶道流派，以简素粗陶对抗贵族奢华茶具文化</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">間</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Ma</span></div>
+            <div class="vocab-cell">间隙、留白、沉默。日本美学中与侘寂并列的核心概念，空的空间被视为构成整体的一部分</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">枯山水</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Karesansui</span></div>
+            <div class="vocab-cell">枯山水庭院：白沙、石头、无水无植物。侘寂美学在空间设计中的极端体现</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">茶碗</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Chawan</span></div>
+            <div class="vocab-cell">茶道用碗。侘寂美学最重要的载体，故意不对称、粗粝，朝鲜李朝的日常饭碗是最高评价</div>
+          </div>
+          <div class="vocab-row">
+            <div class="vocab-cell"><span class="vocab-jp">和敬清寂</span></div>
+            <div class="vocab-cell"><span class="vocab-ro">Wa kei sei jaku</span></div>
+            <div class="vocab-cell">千利休定义的茶道四规：和谐·尊重·纯粹·寂静。"寂"（jaku）即侘寂之寂</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- S11 速查手册 -->
+      <section class="sec" id="s11" data-obs>
+        <p class="sec-label">速查手册</p>
+        <h2>读完之后，你拥有的认知地图</h2>
+
+        <div class="cheatsheet">
+          <p class="cs-title">核心观点与延伸</p>
+          <div class="cs-grid">
+            <div>
+              <p class="cs-block-title">值得记住的观点</p>
+              <ul class="cs-list">
+                <li>侘寂不是"残缺美"，是对完整性作为最高价值的根本否定</li>
+                <li>金继的关键不在黄金，在于选择让破碎可见而非隐藏</li>
+                <li>千利休被赐死这件事本身就是侘寂的反面——权力最终无法容忍对奢华的拒绝</li>
+                <li>Leonard Koren让侘寂被西方知道，但也让它被简化成一种"风格"</li>
+                <li>真正的侘寂器物是用的，不是展示的——用才会产生那些老旧痕迹</li>
+              </ul>
+            </div>
+            <div>
+              <p class="cs-block-title">值得继续思考的问题</p>
+              <ul class="cs-list">
+                <li>金继使用黄金——这是否与侘寂的朴素精神矛盾？</li>
+                <li>侘寂能被有意识地"设计"出来吗，还是只能自然发生？</li>
+                <li>极简主义（minimalism）和侘寂有什么本质区别？</li>
+                <li>千利休的茶室故意让武士弯腰进入——这是美学还是政治？</li>
+                <li>在数字时代，侘寂这个概念是否已经失去意义？</li>
+              </ul>
+            </div>
+            <div>
+              <p class="cs-block-title">具体的参照物</p>
+              <ul class="cs-list">
+                <li>京都龙安寺枯山水：从任何角度只能看见14块石头中的14块</li>
+                <li>朝鲜李朝粉青沙器：原本是农民饭碗，成为侘茶最高等级茶碗</li>
+                <li>千利休设计的待庵茶室：现存最古老的草庵茶室，仅2张榻榻米</li>
+                <li>足利义政的东山文化：将中国文物与侘寂美学并存的过渡时期</li>
+              </ul>
+            </div>
+            <div>
+              <p class="cs-block-title">推荐的延伸阅读</p>
+              <ul class="cs-list">
+                <li>Leonard Koren《Wabi-Sabi for Artists...》（1994）— 最简洁的英文入门</li>
+                <li>冈仓天心《茶之书》（The Book of Tea, 1906）— 茶道哲学经典</li>
+                <li>九鬼周造《"粹"的结构》— 与侘寂并列的日本美学概念</li>
+                <li>Donald Richie《A Tractate on Japanese Aesthetics》— 比较美学视角</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <p class="closing-label">今日认知转变</p>
+    <h2>你以为这是关于破碗的故事<br>其实是关于时间是否有价值的问题</h2>
+    <div class="gold-bar"></div>
+    <p>侘寂最激进的地方不是说"破碎也可以接受"，而是说：<strong>完整从来不是最高价值，经历才是。</strong>这个判断，关于茶碗，也关于一切有历史的事物——包括人。</p>
+  </section>
+
+  <footer class="footer">
+    Day 01 of 60 · 侘寂美学与金继技法 · 问题驱动探索计划
+  </footer>
+
+  <script>
+    const bar = document.getElementById('progress');
+    const nav = document.getElementById('nav');
+    const secs = document.querySelectorAll('[data-obs]');
+    const links = document.querySelectorAll('.toc-list a');
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('vis'); }
+      });
+    }, { threshold: 0.06 });
+    secs.forEach(s => io.observe(s));
+
+    const secIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          links.forEach(l => {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.sec[id]').forEach(s => secIO.observe(s));
+
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (window.scrollY / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      nav.classList.toggle('show', window.scrollY > window.innerHeight * 0.7);
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
