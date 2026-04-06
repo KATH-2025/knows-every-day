@@ -9,31 +9,35 @@
   padding: 2rem 2rem 4rem;
 }
 
-.pageHeader {
+.pageNav {
+  height: 48px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid var(--rule);
   margin-bottom: 2rem;
+}
+
+.backLink {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--ink2);
+  text-decoration: none;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.backLink:hover {
+  color: var(--ink);
 }
 
 .pageTitle {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: var(--ink);
-}
-
-.homeLink {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  color: var(--ink3);
-  text-decoration: none;
-}
-
-.homeLink:hover {
+  font-size: 10px;
+  letter-spacing: 0.2em;
   color: var(--ink);
 }
 

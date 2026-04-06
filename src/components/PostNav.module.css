@@ -1,88 +1,124 @@
 .nav {
-  height: 48px;
   display: flex;
-  align-items: center;
-  padding: 0 0.75rem;
+  flex-direction: column;
   border-bottom: 0.5px solid var(--rule);
   background: var(--paper);
   flex-shrink: 0;
-  gap: 0.25rem;
 }
 
-/* 左：翻篇按钮 */
-.left {
+/* ── 第一行 ── */
+.row1 {
   display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  flex-shrink: 0;
+  align-items: stretch;
+  height: 48px;
 }
 
-.flipBtn {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 0.4rem 0.6rem;
-  border: 0.5px solid var(--rule);
-  min-height: 36px;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.flipBtn:hover {
-  border-color: var(--ink);
-  color: var(--rust);
-}
-
-/* 中：期号日期 */
-.center {
+/* PREV / NEXT */
+.flip {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.issue {
   font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--ink2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* 右：ALL + SEARCH 入口 */
-.right {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  flex-shrink: 0;
-}
-
-.entryBtn {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--ink2);
-  text-decoration: none;
-  padding: 0.4rem 0.6rem;
-  border: 0.5px solid transparent;
-  min-height: 36px;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.entryBtn:hover {
-  border-color: var(--rule);
+  font-size: 10px;
+  letter-spacing: 0.14em;
   color: var(--ink);
+  text-decoration: none;
+  padding: 0 1rem;
+  /* 保证手机 44px 最小触摸区域 */
+  min-width: 80px;
+}
+
+.flip:first-child {
+  justify-content: flex-start;
+}
+
+.flip:last-child {
+  justify-content: flex-end;
+}
+
+.flip:hover {
+  color: var(--rust);
 }
 
 .disabled {
   color: var(--rule);
   pointer-events: none;
+}
+
+/* ··· 菜单 */
+.menuWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menuBtn {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 48px;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--ink2);
+  cursor: pointer;
+  user-select: none;
+  border-left: 0.5px solid var(--rule);
+  border-right: 0.5px solid var(--rule);
+}
+
+/* 去掉 Safari 的 details 三角 */
+.menuBtn::-webkit-details-marker {
+  display: none;
+}
+
+.menuWrap[open] .menuBtn {
+  color: var(--ink);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  border: 0.5px solid var(--ink);
+  z-index: 200;
+  min-width: 130px;
+}
+
+.dropItem {
+  display: block;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--rule);
+}
+
+.dropItem:last-child {
+  border-bottom: none;
+}
+
+.dropItem:hover {
+  color: var(--rust);
+}
+
+/* ── 第二行：期号 + 日期 ── */
+.row2 {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 0.5px solid var(--rule);
+}
+
+.issue {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink3);
 }

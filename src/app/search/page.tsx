@@ -15,9 +15,9 @@ export default function SearchPage() {
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <div className={styles.pageHeader}>
+        <div className={styles.pageNav}>
+          <Link href="/" className={styles.backLink}>← BACK</Link>
           <span className={styles.pageTitle}>SEARCH</span>
-          <Link href="/" className={styles.homeLink}>← HOME</Link>
         </div>
         <SearchBar index={index} />
         <SiteFooter />
