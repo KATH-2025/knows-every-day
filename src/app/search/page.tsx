@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { buildSearchIndex, getBeijingDateStr } from "@/lib/posts";
-import Masthead from "@/components/Masthead";
 import IssueBar from "@/components/IssueBar";
 import SearchBar from "@/components/SearchBar";
 import SiteFooter from "@/components/SiteFooter";
@@ -17,7 +16,6 @@ export default function SearchPage() {
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <Masthead />
         <IssueBar left="SEARCH" date={today} />
         <SearchBar index={index} />
         <SiteFooter />
