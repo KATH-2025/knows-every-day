@@ -42,7 +42,10 @@ export default function ArchivePage() {
       <div className={styles.wrap}>
         <div className={styles.pageHeader}>
           <span className={styles.pageTitle}>ARCHIVE</span>
-          <span className={styles.pageCount}>{allMetas.length} ISSUES</span>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
+            <span className={styles.pageCount}>{allMetas.length} ISSUES</span>
+            <Link href="/" className={styles.homeLink}>← HOME</Link>
+          </div>
         </div>
 
         {years.length === 0 && (

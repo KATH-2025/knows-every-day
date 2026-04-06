@@ -1,6 +1,6 @@
+import Link from "next/link";
 import type { Metadata } from "next";
-import { buildSearchIndex, getBeijingDateStr } from "@/lib/posts";
-import IssueBar from "@/components/IssueBar";
+import { buildSearchIndex } from "@/lib/posts";
 import SearchBar from "@/components/SearchBar";
 import SiteFooter from "@/components/SiteFooter";
 import styles from "./page.module.css";
@@ -11,12 +11,14 @@ export const metadata: Metadata = {
 
 export default function SearchPage() {
   const index = buildSearchIndex();
-  const today = getBeijingDateStr().replace(/-/g, ".");
 
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <IssueBar left="SEARCH" date={today} />
+        <div className={styles.pageHeader}>
+          <span className={styles.pageTitle}>SEARCH</span>
+          <Link href="/" className={styles.homeLink}>← HOME</Link>
+        </div>
         <SearchBar index={index} />
         <SiteFooter />
       </div>
