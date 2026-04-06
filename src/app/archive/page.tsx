@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllPostsMeta } from "@/lib/posts";
-import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import styles from "./page.module.css";
 
@@ -41,7 +40,6 @@ export default function ArchivePage() {
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <Masthead />
         <div className={styles.pageHeader}>
           <span className={styles.pageTitle}>ARCHIVE</span>
           <span className={styles.pageCount}>{allMetas.length} ISSUES</span>
