@@ -24,11 +24,8 @@ export default function PostNav({ issueNum, date, prev, next }: Props) {
         <span className={styles.date}>{date}</span>
       </div>
 
-      {/* 右：搜索 + 前后翻篇 */}
+      {/* 右：前后翻篇 */}
       <div className={styles.right}>
-        <Link href="/archive" className={styles.btn} title="所有文章">
-          ≡
-        </Link>
         <Link
           href={prev ? `/${prev}` : "#"}
           className={`${styles.btn} ${!prev ? styles.disabled : ""}`}

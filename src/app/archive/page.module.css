@@ -9,6 +9,29 @@
   padding: 2rem 2rem 4rem;
 }
 
+.pageHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.pageTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--ink);
+}
+
+.pageCount {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink3);
+}
+
 .yearSection {
   margin-bottom: 2.5rem;
 }

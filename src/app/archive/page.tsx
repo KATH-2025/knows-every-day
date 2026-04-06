@@ -1,8 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllPostsMeta, getBeijingDateStr } from "@/lib/posts";
+import { getAllPostsMeta } from "@/lib/posts";
 import Masthead from "@/components/Masthead";
-import IssueBar from "@/components/IssueBar";
 import SiteFooter from "@/components/SiteFooter";
 import styles from "./page.module.css";
 
@@ -39,16 +38,14 @@ export default function ArchivePage() {
         .map((month) => ({ month, posts: grouped[year][month] })),
     }));
 
-  const today = getBeijingDateStr().replace(/-/g, ".");
-
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
         <Masthead />
-        <IssueBar
-          left={`ARCHIVE · ${allMetas.length}`}
-          date={today}
-        />
+        <div className={styles.pageHeader}>
+          <span className={styles.pageTitle}>ARCHIVE</span>
+          <span className={styles.pageCount}>{allMetas.length} ISSUES</span>
+        </div>
 
         {years.length === 0 && (
           <p className={styles.empty}>NO ISSUES YET</p>
