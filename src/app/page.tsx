@@ -52,7 +52,7 @@ export default async function HomePage() {
           <h1 className={styles.h1}>{post.title}</h1>
           <PostCover src={post.image} alt={post.title} />
           {post.isFullPage ? (
-            <HtmlPostFrame html={post.contentHtml} />
+            <HtmlPostFrame slug={post.slug} />
           ) : (
             <div className="prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
           )}
