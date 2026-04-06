@@ -36,6 +36,11 @@ body {
   line-height: 1.7;
 }
 
+/* iframe 内部滚动在 iOS Safari 上需要这个 */
+iframe {
+  -webkit-overflow-scrolling: touch;
+}
+
 a {
   color: inherit;
   text-decoration: none;
