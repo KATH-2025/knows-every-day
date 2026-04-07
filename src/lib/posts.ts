@@ -1,23 +1,17 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import type { Post, PostMeta, SearchIndex, SiteStats } from "@/types";
+import postsData from "./posts-data.json";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+type PostEntry = { content: string; ext: string };
+const data = postsData as Record<string, PostEntry>;
 
 /** 返回北京时间（UTC+8）的当前日期字符串，格式 "2025-07-11" */
 export function getBeijingDateStr(): string {
   const now = new Date();
   const beijing = new Date(now.getTime() + 8 * 60 * 60 * 1000);
   return beijing.toISOString().slice(0, 10);
-}
-
-function ensurePostsDir() {
-  if (!fs.existsSync(postsDirectory)) {
-    fs.mkdirSync(postsDirectory, { recursive: true });
-  }
 }
 
 // ── HTML 文件解析 ────────────────────────────────────────────────
@@ -85,37 +79,35 @@ function htmlToExcerpt(htmlStr: string): string {
 type RawPost = { meta: Record<string, unknown>; contentHtml: string; excerpt: string; isFullPage?: boolean };
 
 async function readPostFile(slug: string): Promise<RawPost | null> {
-  ensurePostsDir();
-
   // .html 优先
-  const htmlPath = path.join(postsDirectory, `${slug}.html`);
-  if (fs.existsSync(htmlPath)) {
-    const src = fs.readFileSync(htmlPath, "utf8");
-    const meta = parseHtmlMeta(src);
-    const hasBody = /<body[\s\S]*?>/i.test(src);
+  const htmlEntry = data[slug] && data[slug].ext === ".html" ? data[slug] : null;
+  const mdEntry = data[slug] && data[slug].ext === ".md" ? data[slug] : null;
+
+  // 也支持同 slug 同时存在 html/md 的情况（取 html 优先）
+  const htmlSrc = htmlEntry?.content ?? null;
+  const mdSrc = mdEntry?.content ?? null;
+
+  if (htmlSrc !== null) {
+    const meta = parseHtmlMeta(htmlSrc);
+    const hasBody = /<body[\s\S]*?>/i.test(htmlSrc);
 
     if (hasBody) {
-      // 完整 HTML 页面：去掉 JSON 注释头，原文返回（用 iframe 渲染，避免 CSS 污染）
-      const contentHtml = src.replace(/^<!--\s*\{[\s\S]*?\}\s*-->/, "").trim();
+      const contentHtml = htmlSrc.replace(/^<!--\s*\{[\s\S]*?\}\s*-->/, "").trim();
       const excerpt = htmlToExcerpt(contentHtml);
       return { meta, contentHtml, excerpt, isFullPage: true };
     } else {
-      // 纯片段：直接嵌入
-      const contentHtml = extractHtmlContent(src);
+      const contentHtml = extractHtmlContent(htmlSrc);
       const excerpt = htmlToExcerpt(contentHtml);
       return { meta, contentHtml, excerpt, isFullPage: false };
     }
   }
 
-  // 回退 .md
-  const mdPath = path.join(postsDirectory, `${slug}.md`);
-  if (fs.existsSync(mdPath)) {
-    const src = fs.readFileSync(mdPath, "utf8");
-    const { data, content } = matter(src);
+  if (mdSrc !== null) {
+    const { data: frontmatter, content } = matter(mdSrc);
     const processed = await remark().use(html, { sanitize: false }).process(content);
     const contentHtml = processed.toString();
     const excerpt = content.replace(/[#*`>\-\[\]]/g, "").trim().slice(0, 100);
-    return { meta: data as Record<string, unknown>, contentHtml, excerpt };
+    return { meta: frontmatter as Record<string, unknown>, contentHtml, excerpt };
   }
 
   return null;
@@ -124,20 +116,7 @@ async function readPostFile(slug: string): Promise<RawPost | null> {
 // ── 列出所有 slug（去重，.html 优先）────────────────────────────
 
 function listSlugs(): string[] {
-  ensurePostsDir();
-  const files = fs.readdirSync(postsDirectory);
-  const slugSet = new Map<string, string>(); // slug → 文件名
-
-  for (const f of files) {
-    if (f.startsWith("_")) continue; // 跳过模板文件
-    if (f.endsWith(".html")) {
-      slugSet.set(f.replace(/\.html$/, ""), f);
-    } else if (f.endsWith(".md") && !slugSet.has(f.replace(/\.md$/, ""))) {
-      slugSet.set(f.replace(/\.md$/, ""), f);
-    }
-  }
-
-  return Array.from(slugSet.keys()).sort().reverse();
+  return Object.keys(data).sort().reverse();
 }
 
 // ── 公开 API ─────────────────────────────────────────────────────
@@ -145,23 +124,16 @@ function listSlugs(): string[] {
 /** 获取所有文章的元数据列表，按日期降序 */
 export function getAllPostsMeta(): PostMeta[] {
   return listSlugs().map((slug) => {
-    ensurePostsDir();
-
-    // 同步读取 meta（不需要 remark，只取 frontmatter）
-    const htmlPath = path.join(postsDirectory, `${slug}.html`);
-    const mdPath = path.join(postsDirectory, `${slug}.md`);
-
+    const entry = data[slug];
     let meta: Record<string, unknown> = {};
     let excerpt = "";
 
-    if (fs.existsSync(htmlPath)) {
-      const src = fs.readFileSync(htmlPath, "utf8");
-      meta = parseHtmlMeta(src);
-      excerpt = htmlToExcerpt(extractHtmlContent(src));
-    } else if (fs.existsSync(mdPath)) {
-      const src = fs.readFileSync(mdPath, "utf8");
-      const { data, content } = matter(src);
-      meta = data as Record<string, unknown>;
+    if (entry.ext === ".html") {
+      meta = parseHtmlMeta(entry.content);
+      excerpt = htmlToExcerpt(extractHtmlContent(entry.content));
+    } else if (entry.ext === ".md") {
+      const { data: frontmatter, content } = matter(entry.content);
+      meta = frontmatter as Record<string, unknown>;
       excerpt = content.replace(/[#*`>\-\[\]]/g, "").trim().slice(0, 100);
     }
 

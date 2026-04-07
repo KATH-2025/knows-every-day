@@ -27,3 +27,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# build artifacts
+src/lib/posts-data.json

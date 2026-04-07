@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import postsData from "@/lib/posts-data.json";
+
+type PostEntry = { content: string; ext: string };
+const data = postsData as Record<string, PostEntry>;
 
 export async function GET(
   _request: NextRequest,
@@ -13,15 +15,13 @@ export async function GET(
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const htmlPath = path.join(process.cwd(), "posts", `${slug}.html`);
-
-  if (!fs.existsSync(htmlPath)) {
+  const entry = data[slug];
+  if (!entry || entry.ext !== ".html") {
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const raw = fs.readFileSync(htmlPath, "utf8");
   // 去掉顶部 JSON 元数据注释，返回纯 HTML
-  const html = raw.replace(/^<!--\s*\{[\s\S]*?\}\s*-->/, "").trim();
+  const html = entry.content.replace(/^<!--\s*\{[\s\S]*?\}\s*-->/, "").trim();
 
   return new NextResponse(html, {
     headers: {

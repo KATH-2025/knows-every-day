@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "prebuild": "node scripts/build-posts.mjs",
+    "dev": "node scripts/build-posts.mjs && next dev",
     "build": "next build",
+    "build:cf": "opennextjs-cloudflare build",
+    "deploy:cf": "npm run build:cf && wrangler deploy",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,9 +24,11 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.18.0",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "wrangler": "^4.80.0"
   }
 }
