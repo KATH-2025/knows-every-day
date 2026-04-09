@@ -6,8 +6,7 @@
     "prebuild": "node scripts/build-posts.mjs",
     "dev": "node scripts/build-posts.mjs && next dev",
     "build": "next build",
-    "build:cf": "opennextjs-cloudflare build",
-    "deploy:cf": "npm run build:cf && wrangler deploy",
+    "deploy:cf": "wrangler deploy",
     "start": "next start",
     "lint": "next lint"
   },
@@ -16,6 +15,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "gray-matter": "^4.0.3",
     "next": "^15.5.14",
     "react": "^19.2.4",
@@ -24,6 +24,7 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260409.1",
     "@opennextjs/cloudflare": "^1.18.0",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",

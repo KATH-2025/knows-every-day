@@ -1,5 +1,5 @@
 {
-  "name": "knows-every-day",
-  "compatibility_date": "2025-01-01",
-  "compatibility_flags": ["nodejs_compat"]
+	"name": "knows-every-day",
+	"main": "proxy-worker.js",
+	"compatibility_date": "2025-01-01"
 }
