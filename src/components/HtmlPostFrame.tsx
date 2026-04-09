@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
-import type { Annotation } from "@/types";
+import { useRef, useEffect, useState } from "react";
 import styles from "./AnnotationLayer.module.css";
 
 interface Props { slug: string; }
@@ -17,24 +16,10 @@ export default function HtmlPostFrame({ slug }: Props) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const key = `scroll_${slug}`;
 
-  // ── 划线/注释状态 ──
   const [toolbar, setToolbar] = useState<ToolbarPos | null>(null);
   const [selectedText, setSelectedText] = useState("");
   const [noteOpen, setNoteOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
-  const [panelOpen, setPanelOpen] = useState(false);
-  const [annotations, setAnnotations] = useState<Annotation[]>([]);
-
-  const loadAnnotations = useCallback(async () => {
-    const userId = getUserId();
-    try {
-      const res = await fetch(`/api/annotations?userId=${userId}&slug=${slug}`);
-      const data = await res.json() as { annotations?: Annotation[] };
-      setAnnotations(data.annotations ?? []);
-    } catch { setAnnotations([]); }
-  }, [slug]);
-
-  useEffect(() => { loadAnnotations(); }, [loadAnnotations]);
 
   // ── iframe 滚动记忆 ──
   useEffect(() => {
@@ -61,18 +46,13 @@ export default function HtmlPostFrame({ slug }: Props) {
         type: string; text?: string;
         rect?: { top: number; left: number; width: number; height: number };
       };
-
-      if (type === "ke-selection-clear") {
-        setToolbar(null);
-        return;
-      }
+      if (type === "ke-selection-clear") { setToolbar(null); return; }
       if (type === "ke-text-selected" && text && rect) {
-        // iframe 在视口中的位置
         const iframeRect = iframeRef.current?.getBoundingClientRect();
         if (!iframeRect) return;
         setSelectedText(text);
         setToolbar({
-          top: iframeRect.top + rect.top - 44,
+          top: iframeRect.top + rect.top - 48,
           left: iframeRect.left + rect.left + rect.width / 2,
         });
       }
@@ -88,8 +68,7 @@ export default function HtmlPostFrame({ slug }: Props) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, slug, selected_text: selectedText, note: null }),
-    });
-    loadAnnotations();
+    }).catch(() => { });
   };
 
   const handleSaveNote = async () => {
@@ -98,17 +77,10 @@ export default function HtmlPostFrame({ slug }: Props) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, slug, selected_text: selectedText, note: noteText }),
-    });
+    }).catch(() => { });
     setNoteOpen(false);
     setNoteText("");
     setToolbar(null);
-    loadAnnotations();
-  };
-
-  const handleDelete = async (id: string) => {
-    const userId = getUserId();
-    await fetch(`/api/annotations/${id}?userId=${userId}`, { method: "DELETE" });
-    loadAnnotations();
   };
 
   return (
@@ -123,8 +95,8 @@ export default function HtmlPostFrame({ slug }: Props) {
       {/* 浮动工具条 */}
       {toolbar && !noteOpen && (
         <div className={styles.toolbar} style={{ position: "fixed", top: toolbar.top, left: toolbar.left, transform: "translateX(-50%)" }}>
-          <button className={styles.toolbarBtn} onClick={handleHighlight}>✏ 划线</button>
-          <button className={styles.toolbarBtn} onClick={() => { setNoteOpen(true); setToolbar(null); }}>📝 笔记</button>
+          <button className={styles.toolbarBtn} onPointerDown={(e) => { e.preventDefault(); handleHighlight(); }}>✏ 划线</button>
+          <button className={styles.toolbarBtn} onPointerDown={(e) => { e.preventDefault(); setNoteOpen(true); setToolbar(null); }}>📝 笔记</button>
         </div>
       )}
 
@@ -136,34 +108,8 @@ export default function HtmlPostFrame({ slug }: Props) {
           <textarea className={styles.noteTextarea} placeholder="写下你的想法..." value={noteText}
             onChange={(e) => setNoteText(e.target.value)} autoFocus />
           <div className={styles.noteActions}>
-            <button className={styles.noteBtn} onClick={() => { setNoteOpen(false); setNoteText(""); }}>取消</button>
-            <button className={`${styles.noteBtn} ${styles.primary}`} onClick={handleSaveNote}>保存</button>
-          </div>
-        </div>
-      )}
-
-      {/* 笔记 FAB */}
-      <button className={styles.fab} onClick={() => setPanelOpen(true)} title="我的笔记">✎</button>
-
-      {/* 侧边笔记面板 */}
-      {panelOpen && (
-        <div className={styles.panel}>
-          <div className={styles.panelHeader}>
-            <span className={styles.panelTitle}>MY NOTES · {annotations.length}</span>
-            <button className={styles.panelClose} onClick={() => setPanelOpen(false)}>×</button>
-          </div>
-          <div className={styles.panelList}>
-            {annotations.length === 0 && <p className={styles.panelEmpty}>选中文字划线或加笔记</p>}
-            {annotations.map((ann) => (
-              <div key={ann.id} className={styles.annotationCard}>
-                <div className={styles.annotationQuote}>"{ann.selected_text.slice(0, 100)}{ann.selected_text.length > 100 ? "…" : ""}"</div>
-                {ann.note && <div className={styles.annotationNote}>{ann.note}</div>}
-                <div className={styles.annotationMeta}>
-                  <span className={styles.annotationDate}>{new Date(ann.created_at).toLocaleDateString("zh-CN")}</span>
-                  <button className={styles.deleteBtn} onClick={() => handleDelete(ann.id)}>删除</button>
-                </div>
-              </div>
-            ))}
+            <button className={styles.noteBtn} onPointerDown={() => { setNoteOpen(false); setNoteText(""); }}>取消</button>
+            <button className={`${styles.noteBtn} ${styles.primary}`} onPointerDown={handleSaveNote}>保存</button>
           </div>
         </div>
       )}

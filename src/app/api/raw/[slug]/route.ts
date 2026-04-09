@@ -23,23 +23,26 @@ export async function GET(
   // 去掉顶部 JSON 元数据注释，返回纯 HTML
   let html = entry.content.replace(/^<!--\s*\{[\s\S]*?\}\s*-->/, "").trim();
 
-  // 注入划线通信脚本：把选中文字通过 postMessage 发给父页面
+  // 注入划线通信脚本：用 selectionchange + 防抖，兼容移动端
   const selectionScript = `
 <script>
 (function(){
+  var timer=null;
   function sendClear(){ window.parent.postMessage({type:'ke-selection-clear'},'*'); }
-  document.addEventListener('mouseup',function(){
-    var sel=window.getSelection();
-    if(!sel||sel.isCollapsed||!sel.toString().trim()){ sendClear(); return; }
-    var text=sel.toString().trim();
-    if(text.length<5){ sendClear(); return; }
-    var range=sel.getRangeAt(0);
-    var r=range.getBoundingClientRect();
-    window.parent.postMessage({type:'ke-text-selected',text:text,rect:{top:r.top,left:r.left,width:r.width,height:r.height}},'*');
-  });
-  document.addEventListener('mousedown',function(){
-    var sel=window.getSelection();
-    if(!sel||sel.isCollapsed) sendClear();
+  document.addEventListener('selectionchange',function(){
+    clearTimeout(timer);
+    timer=setTimeout(function(){
+      var sel=window.getSelection();
+      if(!sel||sel.isCollapsed){sendClear();return;}
+      var text=sel.toString().trim();
+      if(text.length<5){sendClear();return;}
+      try{
+        var range=sel.getRangeAt(0);
+        var r=range.getBoundingClientRect();
+        if(r.width===0&&r.height===0){return;}
+        window.parent.postMessage({type:'ke-text-selected',text:text,rect:{top:r.top,left:r.left,width:r.width,height:r.height}},'*');
+      }catch(e){}
+    },350);
   });
 })();
 </script>`;

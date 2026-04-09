@@ -31,6 +31,7 @@ export default function PostNav({ issueNum, date, prev, next }: Props) {
             <Link href="/archive" className={styles.dropItem}>ALL ISSUES</Link>
             <Link href="/search" className={styles.dropItem}>SEARCH</Link>
             <Link href="/map" className={styles.dropItem}>KNOWLEDGE MAP</Link>
+            <Link href="/notes" className={styles.dropItem}>MY NOTES</Link>
           </div>
         </details>
 
