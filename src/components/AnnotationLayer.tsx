@@ -65,7 +65,8 @@ export default function AnnotationLayer({ slug }: Props) {
       selectionRef.current = range.cloneRange();
       const rect = range.getBoundingClientRect();
       setSelectedText(text);
-      setToolbar({ top: rect.top + window.scrollY - 44, left: rect.left + rect.width / 2 });
+      // 用视口坐标（fixed 定位），工具条显示在选中文字正上方
+      setToolbar({ top: rect.top - 44, left: rect.left + rect.width / 2 });
     };
 
     document.addEventListener("mouseup", handleMouseUp);
@@ -123,7 +124,7 @@ export default function AnnotationLayer({ slug }: Props) {
     <>
       {/* 浮动工具条 */}
       {toolbar && (
-        <div className={styles.toolbar} style={{ position: "absolute", top: toolbar.top, left: toolbar.left, transform: "translateX(-50%)" }}>
+        <div className={styles.toolbar} style={{ position: "fixed", top: toolbar.top, left: toolbar.left, transform: "translateX(-50%)" }}>
           <button className={styles.toolbarBtn} onClick={handleHighlight}>✏ 划线</button>
           <button className={styles.toolbarBtn} onClick={handleOpenNote}>📝 笔记</button>
         </div>
