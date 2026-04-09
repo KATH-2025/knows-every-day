@@ -7,6 +7,7 @@ import PostCover from "@/components/PostCover";
 import HtmlPostFrame from "@/components/HtmlPostFrame";
 import PostNav from "@/components/PostNav";
 import SiteFooter from "@/components/SiteFooter";
+import PostClient from "@/components/PostClient";
 import styles from "./page.module.css";
 
 interface Props {
@@ -51,6 +52,7 @@ export default async function DatePage({ params }: Props) {
         <div style={{ flex: 1, minHeight: 0 }}>
           <HtmlPostFrame slug={post.slug} />
         </div>
+        <PostClient slug={post.slug} showAnnotations={false} />
       </div>
     );
   }
@@ -82,6 +84,7 @@ export default async function DatePage({ params }: Props) {
 
         <SiteFooter />
       </div>
+      <PostClient slug={post.slug} />
     </main>
   );
 }

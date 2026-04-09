@@ -27,3 +27,23 @@ export interface SiteStats {
   topicCount: number;  // 涉及领域数
   streak: number;      // 当前连续天数
 }
+
+export interface Annotation {
+  id: string;
+  user_id: string;
+  slug: string;
+  selected_text: string;
+  note: string | null;
+  created_at: number;
+}
+
+export interface ReadRecord {
+  user_id: string;
+  slug: string;
+  read_at: number;
+}
+
+// Cloudflare D1 env binding
+export interface CloudflareEnv {
+  DB: D1Database;
+}

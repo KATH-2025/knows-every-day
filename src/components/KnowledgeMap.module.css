@@ -1,0 +1,115 @@
+.wrap {
+  padding: 1.5rem 0 3rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--ink2);
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .grid {
+    gap: 4px;
+  }
+}
+
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  border: 0.5px solid transparent;
+  transition: border-color 0.1s;
+}
+
+.cell:hover {
+  border-color: var(--ink);
+}
+
+.cellDay {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.cellRead {
+  opacity: 1;
+}
+
+.cellUnread {
+  opacity: 0.25;
+}
+
+.cellEmpty {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 悬浮 tooltip */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.5rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.cell:hover .tooltip {
+  opacity: 1;
+}
+
+.statsRow {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink2);
+}
+
+.statsNum {
+  color: var(--ink);
+  font-size: 14px;
+  display: block;
+  margin-bottom: 0.2rem;
+}

@@ -8,6 +8,7 @@ import PostNav from "@/components/PostNav";
 import HistoryList from "@/components/HistoryList";
 import SearchBar from "@/components/SearchBar";
 import SiteFooter from "@/components/SiteFooter";
+import PostClient from "@/components/PostClient";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
@@ -50,6 +51,7 @@ export default async function HomePage() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <HtmlPostFrame slug={post.slug} />
         </div>
+        <PostClient slug={post.slug} showAnnotations={false} />
       </div>
     );
   }
@@ -94,6 +96,7 @@ export default async function HomePage() {
         <SearchBar index={searchIndex} />
         <SiteFooter />
       </div>
+      <PostClient slug={post.slug} />
     </main>
   );
 }
